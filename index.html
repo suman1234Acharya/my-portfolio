@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suman Acharya | 3D Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 12, 41, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #ff8a00;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            margin-top: 8rem;
+            text-align: center;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #ff8a00, #e52e71, #00c9ff);
+            background-clip: padding-box;
+            padding: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71, #00c9ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 138, 0, 0.3);
+        }
+
+        .cube-container {
+            margin: 4rem auto;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            0% {
+                transform: rotateX(-15deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(-15deg) rotateY(360deg);
+            }
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .face-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #ff8a00;
+        }
+
+        .face i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff8a00;
+        }
+
+        .face h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .front {
+            transform: translateZ(150px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(150px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 4rem 0;
+            max-width: 1000px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 200px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff8a00;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            margin: 4rem 0;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff8a00;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff8a00;
+            transform: translateY(-5px);
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 4rem 0;
+            max-width: 1000px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .about-content p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cube-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .face {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .front, .back, .right, .left, .top, .bottom {
+                transform-origin: center;
+            }
+            
+            .front {
+                transform: translateZ(125px);
+            }
+            
+            .back {
+                transform: rotateY(180deg) translateZ(125px);
+            }
+            
+            .right {
+                transform: rotateY(90deg) translateZ(125px);
+            }
+            
+            .left {
+                transform: rotateY(-90deg) translateZ(125px);
+            }
+            
+            .top {
+                transform: rotateX(90deg) translateZ(125px);
+            }
+            
+            .bottom {
+                transform: rotateX(-90deg) translateZ(125px);
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .about-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Suman Acharya</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" id="home">
+            <div class="profile-container">
+                <img src="c:\Users\hp\Downloads\suman.love.jpg" alt="Suman Acharya" class="profile-img">
+            </div>
+            <h1>Data Analyst & Python Devloper</h1>
+            <p>Hi, I’m Suman Acharya, Python Developer with a Bachelor's degree in Computer Application specializing in Computers. Proficient in SQL Server, Pandas, and Python for developing efficient and scalable solutions. Eager to contribute to dynamic projects and advance career in tech industry.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </section>
+
+        <div class="cube-container">
+            <div class="cube">
+                <div class="face front">
+                    <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Web Development" class="face-img">
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and interactive websites</p>
+                </div>
+                <div class="face back">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="UI/UX Design" class="face-img">
+                    <h3>UI/UX Design</h3>
+                    <p>Designing user-centered interfaces</p>
+                </div>
+                <div class="face right">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Mobile Apps" class="face-img">
+                    <h3>Mobile Apps</h3>
+                    <p>Developing cross-platform applications</p>
+                </div>
+                <div class="face left">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="3D Design" class="face-img">
+                    <h3>3D Design</h3>
+                    <p>Creating immersive 3D experiences</p>
+                </div>
+                <div class="face top">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Backend" class="face-img">
+                    <h3>Backend</h3>
+                    <p>Building robust server solutions</p>
+                </div>
+                <div class="face bottom">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Innovation" class="face-img">
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries with new tech</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="about-section" id="about">
+            <div class="about-img">
+                <img src="c:\Users\hp\OneDrive\Desktop\suman picture - Shortcut.lnk" alt="About Suman Acharya">
+            </div>
+            <div class="about-content">
+                <h2>About Me</h2>
+                 <p>Hi, I’m Suman Acharya, a passionate and dedicated software developer from India.Currently pursuing my Bachelor of Computer Applications (BCA) with a strong interest in Machine Learning and Cybersecurity.I love solving real-world problems using programming and intelligent algorithms.My recent academic project focused on Spear Phishing Email Detection Using Machine Learning.I enjoy working with Python and building ML models to detect patterns in data.I’m also skilled in C, C++, HTML, CSS, and JavaScript for frontend and backend development.</p>
+                <h2>Education</h2>
+                 <p>BCA: Belda College [7.59 CGPA]</p>
+                <p>Intermediate: Baramohanpur high school  [94.00%]</p>
+                <p>Matriculation: Kedar high school [60.00%]</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3>HTML</h3>
+                <p>Semantic markup and modern structure</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS</h3>
+                <p>Advanced styling and animations</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+                <p>Interactive and dynamic functionality</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-react"></i>
+                <h3>React</h3>
+                <p>Component-based UI development</p> 
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+                <p>Data analysis and backend development</p> 
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-brain"></i>
+                <h3>Machine Learning</h3>
+                <p>Predictive models and AI algorithms</p> 
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="c:\Users\hp\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\80C6087EEBA291970207A494A2FD0231\WhatsApp Image 2025-11-25 at 11.14.43_fa035d2d.jpg" alt="Data Visualization Dashboard">
+                </div>
+                <div class="project-content">
+                    <h3>Netflix Movie Data Analysis Project</h3>
+                    <p>Interactive dashboard with real-time data visualization using python and pandas .</p>
+                    <a href="https://github.com/b7c205f3-7a36-406d-8339-ce3e745ae57d" class="btn" style="margin-top: 1rem;">View Project</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="c:\Users\hp\Downloads\phishing.jpg" alt="3D Game Interface">
+                </div>
+                <div class="project-content">
+                    <h3>Spear Phishing Detection Paper (AI)</h3>
+                    <p>Research paper on advanced *Machine Learning techniques* to detect and classify highly targeted Spear Phishing emails.</p>
+                    <a href="https://lnkd.in/epmhhSYH" class="btn" style="margin-top: 1rem;">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
+            
+            <form class="contact-form" action="https://formspree.io/f/mblenngw" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/suman-acharya-81bb2635a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/suman1234Acharya"><i class="fab fa-github"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 Suman Acharya. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Interactive cube rotation on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const cube = document.querySelector('.cube');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            cube.style.transform = rotateY(${xAxis}deg) rotateX(${yAxis}deg);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
