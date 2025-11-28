@@ -327,6 +327,95 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
+        /* --- CERTIFICATES STYLING --- */
+        .certificates-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .certificates-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .certificate-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-img {
+            height: 180px;
+            overflow: hidden;
+            background-color: #24243e; /* Fallback for transparency */
+        }
+
+        .cert-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .certificate-card:hover .cert-img img {
+            transform: scale(1.05);
+        }
+
+        .cert-content {
+            padding: 1.5rem;
+            text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cert-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .cert-details {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-details span {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-details i {
+            color: #ff8a00;
+            margin-right: 8px;
+            width: 15px;
+        }
+
 
         .contact {
             margin: 4rem 0;
@@ -622,33 +711,85 @@
                 </div>
             </div>
         </section>
+         <section class="certificates-section" id="certificates">
+            <h2>Certifications</h2>
+            <div class="certificates-grid">
+                
+                <div class="certificate-card">
+                    <div class="cert-img">
+                        <img src="file:///C:/Users/hp/Downloads/Python-Data-Science.webp" alt="Python Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h3>Python for Data Science</h3>
+                        <div class="cert-details">
+                            <span><i class="fas fa-university"></i>IBM</span>
+                            <span><i class="fas fa-calendar-alt"></i> Issued: Jan 2025</span>
+                        </div>
+                        <a href="data science.jpg" class="btn" style="width: 100%; text-align:center;">View Credential</a>
+                    </div>
+                </div>
 
-        <section class="contact" id="contact">
+                <div class="certificate-card">
+                    <div class="cert-img">
+                        <img src="https://th.bing.com/th/id/OIP.XTRl4rwNqniKlEtc6swCMgHaE8?w=244&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Cybersecurity Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h3>python</h3>
+                        <div class="cert-details">
+                            <span><i class="fas fa-university"></i> cousera</span>
+                            <span><i class="fas fa-calendar-alt"></i> Issued: Mar 2025</span>
+                        </div>
+                        <a href="python cirtificate.jpg" class="btn" style="width: 100%; text-align:center;">View Credential</a>
+                    </div>
+                </div>
+
+                <div class="certificate-card">
+                    <div class="cert-img">
+                        <img src="https://th.bing.com/th/id/OIP.X1Ny0lK4EiauptCpUQhaVgHaEo?w=265&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Machine Learning Certificate">
+                    </div>
+                    <div class="cert-content">
+                        <h3>Machine Learning A-Z</h3>
+                        <div class="cert-details">
+                            <span><i class="fas fa-university"></i>coursera</span>
+                            <span><i class="fas fa-calendar-alt"></i> Issued: Aug 2025</span>
+                        </div>
+                        <a href="machine learning cirtificate.jpg" class="btn" style="width: 100%; text-align:center;">View Credential</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+       <section class="contact" id="contact">
             <h2>Get In Touch</h2>
             <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
             
-            <form <class="contact-form">
-  action="https://formspree.io/f/mangwowy"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
-        </section>
+          <section class="contact" id="contact">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
+            
+            <form action="https://formspree.io/f/mangwowy" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                </div>
 
+                <button type="submit" class="btn submit-btn">Send Message</button>
+            </form>
+        </section>
+      
         <footer>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/suman-acharya-81bb2635a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/suman1234Acharya"><i class="fab fa-github"></i></a>
                 <a href="https://www.instagram.com/__suman__acharya__?igsh=MWtscHl3b3JnZTJ6"><i class="fab fa-instagram"></i></a>
+                 <a href="https://www.facebook.com/share/1EhmuqJiXE/?mibextid=qi2Omg"><i class="fab fa-facebook"></i></a>
+                 
             </div>
             <p>&copy; 2025 Suman Acharya. All rights reserved.</p>
         </footer>
@@ -679,6 +820,7 @@
 </body>
 
 </html>
+
 
 
 
